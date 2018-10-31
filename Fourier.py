@@ -58,7 +58,7 @@ plt.close()
 ii=np.argmax(FT_sg)
 Freq_sg=abs(Freq_sg)
 maxfreq=Freq_sg[ii]
-print('Las Frecuencias pricipales son',maxfreq,'Hz,',Freq_sg[501],'Hz y ',Freq_sg[506],'Hz')
+print('Las Frecuencias principales son las siguientes:',maxfreq,'Hz,',Freq_sg[501],'Hz y ',Freq_sg[506],'Hz')
 #######Sexto punto##########
 #realizamos el filtro pasabajos aca
 def LPFilter(ft,freq):
@@ -74,7 +74,7 @@ plt.title('Datos de Signal.dat')
 plt.xlabel(r'$y$')
 plt.ylabel(r'$Y$')
 plt.legend()
-plt.savefig('PerezSantiago_signal.pdf')
+plt.savefig('PerezSantiago_filtrada.pdf')
 ######Septimo punto#####
 #Ahora realizamos Fourier de los datos incompletos.dat
 t_icp=datos_incompletos[:,0]
@@ -87,7 +87,7 @@ plt.legend()
 plt.xlim([0.01,0.014])
 plt.savefig('Figura_de_demostracion.pdf')
 plt.close()
-print('Realizando aparte un plot de los datos de incompletos.dat, se observa una disconti discontinuidades de los datos entre los tiempos 0.0115 y 0.0125 (Ver Figura_de_demostracion.pdf).')
+print('Realizando aparte un plot de los datos de incompletos.dat, se observa unas discontinuidades de los datos entre los tiempos 0.0115 y 0.0125 (Ver Figura_de_demostracion.pdf).')
 
 ####Octavo punto########
 ##Interpolacion cuadratica y cubica
@@ -99,14 +99,17 @@ nwy_icp_cb=inter_cb(nwt_icp)
 
 #Realizamos fourier aca
 
-FT_icp_qd=DFT(nwy_icp_qd)
-FT_icp_cb=DFT(nwy_icp_cb)
+FT_icp_qd=TF(nwy_icp_qd)
+FT_icp_cb=TF(nwy_icp_cb)
 Freq_icp=freq(N,dt)
 
 ####Noveno punto####
 ####LAs mil graficas de los datos que tiene signal e incompletos ya interpolados
-
-
+fig,tex=plt.subplots(3,1, figsize=(8, 10) ,  sharex=True, sharey=True)
+tex[0].plot(abs(Freq_icp), abs(FT_icp_qd), color='green',label='Transf. de Fourier')
+tex[0].set_title('Trans. de Fourier de la interpolacion cuadratica')
+tex[0].set_ylabel('Amplitud')
+tex[0].set_xlabel('Frecuencia [Hz]')
 
 
 
