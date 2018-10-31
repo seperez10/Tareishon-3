@@ -44,5 +44,13 @@ def freq(N,dt):
 			f[-i]=-i
 	return f/(N*dt)
 Freq_sg=freq(N,dt)
+######Cuarto punto#####
+plt.plot(abs(Freq_sg),abs(FT_sg),label='Transf. de Fourier')
+plt.legend()
+plt.xlabel(r'$Frecuancias[Hz]$')
+plt.ylabel(r'$Amplitud$')
+plt.title('Transformada de Fourier de signal.dat')
+plt.savefig('PerezSantiago_TF.pdf')
+
 		
 
