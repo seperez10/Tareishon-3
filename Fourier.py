@@ -121,7 +121,7 @@ tex[2].set_ylabel('Amplitud')
 tex[2].set_xlabel('Frecuencia [Hz]')
 fig.subplots_adjust(hspace=0.5)
 fig.suptitle('Transformada de Fourier de todos lo datos')
-plt.savefig('ApellidoNombre_TF_interpola.pdf')
+plt.savefig('PerezSantiago_TF_interpola.pdf')
 plt.close()
 
 ##########Decimo punto: discusion
