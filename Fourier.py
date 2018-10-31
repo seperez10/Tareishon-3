@@ -51,6 +51,14 @@ plt.xlabel(r'$Frecuancias[Hz]$')
 plt.ylabel(r'$Amplitud$')
 plt.title('Transformada de Fourier de signal.dat')
 plt.savefig('PerezSantiago_TF.pdf')
+plt.close()
+
+######Quinto punto####
+##tomamos la frecuencias principales del signal.dat
+ii=np.argmax(FT_sg)
+Freq_sg=abs(Freq_sg)
+maxfreq=Freq_sg[ii]
+print('Las Frecuencias pricipales son',maxfreq,'Hz,',Freq_sg[501],'Hz y ',Freq_sg[506],'Hz')
 
 		
 
