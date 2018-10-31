@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
+#####Todo se sube a github cuando este corriendo bien###
 ####Punto 1#####
 ### En primer lugar se van a tomar los datos del dataframe y los normalizaremos 
 nd=31.0
@@ -13,8 +14,8 @@ datos.drop(datos.columns[[0]], axis=1, inplace=True)
 #Obtenemos los valores de los datos
 datos = datos.values
 # Se crean dos matrices con la misma longitud de los datos 
-columnasdat= len(data[0])
-filasdat= len(data[:,0])
+columnasdat= len(datos[0])
+filasdat= len(datos[:,0])
 # los datos de la parte de diagnostico ya que aparecen en letras las volvemos ceros y unos (cuando es maligno es 1 y cuando es beningno es 0)
 for i in range(filasdat):
 	if(datos[i,0]=='M'):
@@ -23,9 +24,31 @@ for i in range(filasdat):
 		datos[i,0]=0
 
 #Creamos una matriz de ceros con las filas y las columnas
-matriz0=np.zeros(filasdat,columnasdat)
+matriz0=np.zeros((filasdat,columnasdat))
 #Aqui realizamos la normalizacion de los datos 
 for i in range(0,columnasdat):
-	matriz[:,i]= (datos[:,i]-datos[:,i].mean())/ (datos[i].std())
+	matriz0[:,i]= (datos[:,i]-datos[:,i].mean())/ (datos[i].std())
+
+######Segundo Punto#####
+#Aqui implementaremos la matriz de covarianza 
+#En primer lugar tenemos que transponer los nuevos datos ya normalizados 
+matriz0 = matriz0.T
+M= len(matriz0[0,:])
+matrizcov= np.zeros((columnasdat,columnasdat))
+for i in range(0,columnasdat):
+	for j in range(0,columnasdat):
+		matrizcov[i,j]= sum((matriz0[i,:]-matriz0[i,:].mean())*(matriz0[j,:]-matriz0[j,:].mean()))/(M-1)
+####Tercer punto####
+
+
+
+
+
+
+
+
+
+
+
 
 
