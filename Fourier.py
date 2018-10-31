@@ -59,6 +59,22 @@ ii=np.argmax(FT_sg)
 Freq_sg=abs(Freq_sg)
 maxfreq=Freq_sg[ii]
 print('Las Frecuencias pricipales son',maxfreq,'Hz,',Freq_sg[501],'Hz y ',Freq_sg[506],'Hz')
+#######Sexto punto##########
+#realizamos el filtro pasabajos aca
+def LPFilter(ft,freq):
+	frt=ft.copy()
+	freq_c=1000
+	frt[abs(freq)>freq_c]=0
+	return frt
+
+FT_LPF=LPFilter(FT_sg,Freq_sg)
+FIT_sg=np.fft.ifft(FT_LPF)
+plt.plot(t_sg,FIT_sg.real,label='Datos con filtro')
+plt.title('Datos de Signal.dat')
+plt.xlabel(r'$y$')
+plt.ylabel(r'$Y$')
+plt.legend()
+plt.savefig('PerezSantiago_signal.pdf')
 
 		
 
