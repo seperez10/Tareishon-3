@@ -40,6 +40,23 @@ for i in range(0,columnasdat):
 		matrizcov[i,j]= sum((matriz0[i,:]-matriz0[i,:].mean())*(matriz0[j,:]-matriz0[j,:].mean()))/(M-1)
 ####Tercer punto####
 
+####Vamos a imprimir los vectores y los valores propios de los vectores
+valores, vectores= np.linalg.eig(matrizcov)
+#Imprimimos el mensaje del autovector correspondiente a cada autovalor
+for i in range(columnasdat):
+	print("El autovector [], tiene autovalor []".format(vectors[:,i],values[i]))
+print('\n')
+
+#####Cuarto punto#####
+#Los parametros mas importantes son
+total=np.sum(values)
+percent=values*100/total
+for i in range(columns):
+    print('El autovalor {}, describe {}% de los datos'.format(values[i],percent[i]))
+maxpercent=percent[0]+percent[1]+percent[2]
+print('\n')
+print('Las primeras 3 componentes describen el {}% de los datos. Por lo tanto, estos tres primeros parametros son los mas importantes'.format(maxpercent))
+print('\n')
 
 
 

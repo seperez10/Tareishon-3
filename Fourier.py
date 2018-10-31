@@ -111,5 +111,22 @@ tex[0].set_title('Trans. de Fourier de la interpolacion cuadratica')
 tex[0].set_ylabel('Amplitud')
 tex[0].set_xlabel('Frecuencia [Hz]')
 
+tex[1].plot(abs(Freq_icp), abs(FT_icp_cb), color='y',label='Transf. de Fourier')
+tex[1].set_title('Trans. de Fourier de la interpolacion cubica')
+tex[1].set_ylabel('Amplitud')
+tex[1].set_xlabel('Frecuencia [Hz]')
+tex[2].plot(abs(Freq_icp), abs(FT_sg), color='r',label='Transf. de Fourier')
+tex[2].set_title('Trans. de Fourier de signal')
+tex[2].set_ylabel('Amplitud')
+tex[2].set_xlabel('Frecuencia [Hz]')
+fig.subplots_adjust(hspace=0.5)
+fig.suptitle('Transformada de Fourier de todos lo datos')
+plt.savefig('ApellidoNombre_TF_interpola.pdf')
+plt.close()
+
+##########Decimo punto: discusion
+print('Las interpolaciones hechas a los datos incompletos reconocen las presencia de cuatro picos de alta amplitud presentes en la original signal.')
+print('Sin embargo, en las interpolaciones se ven amplitudes en frecuencias (de 300Hz a 1200Hz) dondes en la signal original no se presentan. De igual forma, para frecuencias altas (mayores a 2000Hz) la amplitud de las interpolaciones se estabiliza. Esto ultimo no ocurre en las transformada de la señal original signal.')
+
 
 
