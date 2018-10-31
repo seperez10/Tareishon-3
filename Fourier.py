@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+from scipy import interpolate
 ######Primer punto#####
 #Simplemente leemos los datos del signal.dat
 datos_senal= np.genfromtxt('signal.dat', usecols=[0,2])
@@ -75,6 +75,38 @@ plt.xlabel(r'$y$')
 plt.ylabel(r'$Y$')
 plt.legend()
 plt.savefig('PerezSantiago_signal.pdf')
+######Septimo punto#####
+#Ahora realizamos Fourier de los datos incompletos.dat
+t_icp=datos_incompletos[:,0]
+y_icp=datos_incompletos[:,1]
+plt.scatter(t_icp,y_icp,label='Datos de incompletos.dat ',marker='.')
+plt.title('Datos de Incompletos.dat')
+plt.xlabel(r'$t$')
+plt.ylabel(r'$Y$')
+plt.legend()
+plt.xlim([0.01,0.014])
+plt.savefig('Figura_de_demostracion.pdf')
+plt.close()
+print('Realizando aparte un plot de los datos de incompletos.dat, se observa una disconti discontinuidades de los datos entre los tiempos 0.0115 y 0.0125 (Ver Figura_de_demostracion.pdf).')
 
-		
+####Octavo punto########
+##Interpolacion cuadratica y cubica
+inter_qd= interpolate.interp1d(t_icp,y_icp,kind='quadratic',fill_value="extrapolate")
+inter_cb= interpolate.interp1d(t_icp,y_icp,kind='cubic',fill_value="extrapolate")
+nwt_icp=np.linspace(0,0.029,512)
+nwy_icp_qd=inter_qd(nwt_icp)
+nwy_icp_cb=inter_cb(nwt_icp)
+
+#Realizamos fourier aca
+
+FT_icp_qd=DFT(nwy_icp_qd)
+FT_icp_cb=DFT(nwy_icp_cb)
+Freq_icp=freq(N,dt)
+
+####Noveno punto####
+####LAs mil graficas de los datos que tiene signal e incompletos ya interpolados
+
+
+
+
 
